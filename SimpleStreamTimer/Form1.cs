@@ -27,7 +27,7 @@ namespace SimpleStreamTimer {
 
             string filepath = Properties.Settings.Default.filepath;
             if (filepath == "") {
-                filepath = Environment.ExpandEnvironmentVariables("%userprofile%\\Desktop\\countdown.txt");
+                filepath = Application.StartupPath + "countdown.txt";
             }
             txtFilePath.Text = filepath;
 
@@ -36,10 +36,10 @@ namespace SimpleStreamTimer {
             //numSeconds.Value = Properties.Settings.Default.timer_secs;
             countdown = TimeSpan.FromHours((double)numHours.Value) + TimeSpan.FromMinutes((double)numMinutes.Value) + TimeSpan.FromSeconds((double)numSeconds.Value);
             if (chkShowHours.Checked) {
-                lblTime.Text = "Current Timer: " + countdown.ToString(@"h\:mm\:ss");
+                lblTime.Text = "Current Timer: " + countdown.ToString(@"%h\:mm\:ss");
             }
             else {
-                lblTime.Text = "Current Timer: " + countdown.ToString(@"m\:ss");
+                lblTime.Text = "Current Timer: " + countdown.ToString(@"%m\:ss");
             }
         }
 
@@ -93,12 +93,12 @@ namespace SimpleStreamTimer {
             try {
 
                 if (chkShowHours.Checked) {
-                    lblTime.Text = "Current Timer: " + currentValue.ToString(@"h\:mm\:ss");
-                    File.WriteAllText(txtFilePath.Text, currentValue.ToString(@"h\:mm\:ss"));
+                    lblTime.Text = "Current Timer: " + currentValue.ToString(@"%h\:mm\:ss");
+                    File.WriteAllText(txtFilePath.Text, currentValue.ToString(@"%h\:mm\:ss"));
                 }
                 else {
-                    lblTime.Text = "Current Timer: " + currentValue.ToString(@"m\:ss");
-                    File.WriteAllText(txtFilePath.Text, currentValue.ToString(@"m\:ss"));
+                    lblTime.Text = "Current Timer: " + currentValue.ToString(@"%m\:ss");
+                    File.WriteAllText(txtFilePath.Text, currentValue.ToString(@"%m\:ss"));
                 }
             }
             catch (Exception ex) {
@@ -118,6 +118,7 @@ namespace SimpleStreamTimer {
             numSeconds.Enabled = !mode;
             txtFilePath.Enabled = !mode;
             btnBrowse.Enabled = !mode;
+            chkShowHours.Enabled = !mode;
 
             btnStop.Enabled = mode;
             btnStart.Enabled = !mode;
@@ -136,10 +137,10 @@ namespace SimpleStreamTimer {
         private void num_ValueChanged(object sender, EventArgs e) {
             countdown = TimeSpan.FromHours((double)numHours.Value) + TimeSpan.FromMinutes((double)numMinutes.Value) + TimeSpan.FromSeconds((double)numSeconds.Value);
             if (chkShowHours.Checked) {
-                lblTime.Text = "Current Timer: " + countdown.ToString(@"h\:mm\:ss");
+                lblTime.Text = "Current Timer: " + countdown.ToString(@"%h\:mm\:ss");
             }
             else {
-                lblTime.Text = "Current Timer: " + countdown.ToString(@"m\:ss");
+                lblTime.Text = "Current Timer: " + countdown.ToString(@"%m\:ss");
             }
         }
 
@@ -157,13 +158,17 @@ namespace SimpleStreamTimer {
             }
         }
 
-        private void chkShowHours_CheckedChanged(object sender, EventArgs e) {
-            if (chkShowHours.Checked) {
-                lblTime.Text = "Current Timer: " + countdown.ToString(@"h\:mm\:ss");
+        private void chkShowHours_Click(object sender, EventArgs e) {
+            chkShowHours.Checked = !chkShowHours.Checked;
+            lblTime.Text = "Current Timer: " + countdown.ToString(@"%h\:mm\:ss");
+            if (!chkShowHours.Checked) {
+                numHours.Value = 0;
+                lblTime.Text = "Current Timer: " + countdown.ToString(@"%m\:ss");
             }
-            else {
-                lblTime.Text = "Current Timer: " + countdown.ToString(@"m\:ss");
-            }
+
+            numHours.Enabled = chkShowHours.Checked;
+
         }
     }
+
 }

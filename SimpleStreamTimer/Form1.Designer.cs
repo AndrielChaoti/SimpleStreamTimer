@@ -170,7 +170,7 @@ namespace SimpleStreamTimer
             this.numHours.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::SimpleStreamTimer.Properties.Settings.Default, "timer_hours", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numHours.Location = new System.Drawing.Point(12, 25);
             this.numHours.Maximum = new decimal(new int[] {
-            9999,
+            23,
             0,
             0,
             0});
@@ -249,6 +249,7 @@ namespace SimpleStreamTimer
             // 
             // chkShowHours
             // 
+            this.chkShowHours.AutoCheck = false;
             this.chkShowHours.AutoSize = true;
             this.chkShowHours.Checked = global::SimpleStreamTimer.Properties.Settings.Default.show_hours;
             this.chkShowHours.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -259,7 +260,7 @@ namespace SimpleStreamTimer
             this.chkShowHours.TabIndex = 9;
             this.chkShowHours.Text = "Show Hours";
             this.chkShowHours.UseVisualStyleBackColor = true;
-            this.chkShowHours.CheckedChanged += new System.EventHandler(this.chkShowHours_CheckedChanged);
+            this.chkShowHours.Click += new System.EventHandler(this.chkShowHours_Click);
             // 
             // Form1
             // 
