@@ -169,6 +169,11 @@ namespace SimpleStreamTimer
             // 
             this.numHours.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::SimpleStreamTimer.Properties.Settings.Default, "timer_hours", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numHours.Location = new System.Drawing.Point(12, 25);
+            this.numHours.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numHours.Name = "numHours";
             this.numHours.Size = new System.Drawing.Size(120, 20);
             this.numHours.TabIndex = 4;
@@ -180,7 +185,7 @@ namespace SimpleStreamTimer
             this.numMinutes.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::SimpleStreamTimer.Properties.Settings.Default, "timer_mins", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numMinutes.Location = new System.Drawing.Point(138, 25);
             this.numMinutes.Maximum = new decimal(new int[] {
-            60,
+            59,
             0,
             0,
             0});
@@ -213,7 +218,7 @@ namespace SimpleStreamTimer
             this.numSeconds.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::SimpleStreamTimer.Properties.Settings.Default, "timer_secs", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numSeconds.Location = new System.Drawing.Point(264, 25);
             this.numSeconds.Maximum = new decimal(new int[] {
-            60,
+            59,
             0,
             0,
             0});
